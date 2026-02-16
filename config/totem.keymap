@@ -8,26 +8,11 @@
 #define NSL  2
 #define ADJ  3
 
-&mt {
-  /* tapping-term-ms = <170>; */
-    quick-tap-ms = <250>;
-    /* flavor = "hold-preferred"; */
-  /* global-quick-tap; */
-};
 
-&lt {
-    /* tapping-term-ms = <170>; */
-    quick-tap-ms = <250>;
-    /* flavor = "tap-preferred"; */
-    /* global-quick-tap; */
-    require-prior-idle-ms = <250>;
-};
-
-&sk {
-    quick-release;
-};
 
 / {
+    behaviors {
+	
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
@@ -35,135 +20,7 @@
             then-layer = <3>;
         };
     };
-};
-
-/ {
-    behaviors {
-       /*
-        *
-        */
-        caps_tdr: caps_tap_dance_right {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            /* bindings = <&smt RSHFT RALT>, <&caps_word>; */
-            bindings = <&sk RALT>, <&caps_word>;
-        };
-
-        caps_tdl: caps_tap_dance_left {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&slt 1 LSHFT>, <&caps_word>;
-        };
-
-
-       /*   Custom mod-tap/layer-tap behavior.
-        *   The main idea is to accomodate
-        *   the one-shot (i.e. sticky) mods.
-        */
-        slt: sticky_layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            /* require-prior-idle-ms = <250>; */
-            bindings = <&mo>, <&sk>;
-            display-name = "Sticky-Layer-Tap";
-        };
-
-        smt: sticky_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&sk>;
-            display-name = "Sticky-Mod-Tap";
-        };
-
-       /*   Tapping the key invokes the Caps-Word
-        *   behavior while holding it is used
-        *   as a regular key press.
-        *
-        *   One thing to note here is that the second parameter
-        *   is passed a dummy argument value (e.g. 0), per the 
-        *   official documentation.
-        */
-        ht_caps: hold_tap_caps {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            bindings = <&kp>, <&caps_word>;
-            display-name = "Caps Hold Tap";
-        };
-
-       /*   CTRL -based behavior of what would normally be a plain SPACE.
-        *   Implemented as nested mod-morphs. The main idea is that `space`
-        *   and `comma` are among the most commonly typed characters; hence
-        *   their optimized placement (again, not without some individual
-        *   preferences).
-        */
-        spc_L1: rctl_space {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&lt 2 SPACE>, <&kp COMMA>;
-            mods = <(MOD_RCTL)>;
-        };
-
-        spc_L0: lctl_space {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            /* bindings = <&spc_L1>, <&kp COLON>; */
-            bindings = <&lt 2 SPACE>, <&kp COLON>;
-            mods = <(MOD_LCTL)>;
-        };
-
-       /*   Quasi-Shift behavior for certain keys.
-        *   In the traditional QWERTY layout/keyboard proper,
-        *   pairs of non-alphanumeric symbols seem to be tightly coupled
-        *   with one another via Shift Mod Key (e.g. / and ? ).
-        *   In ZMK, there could actually be an easier way to decouple them,
-        *   and, as such, this schema is also subject to revision.
-        */
-        s_minus: shift_minus {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&kp PLUS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        s_dot: shift_dot {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp GT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        s_slash: shift_slash {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp LT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        s_quote: shift_quotes {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp APOS>, <&kp DQT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        ecc: esc_comma_ctl {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mt LCTRL ESC>, <&kp COMMA>;
-            mods = <MOD_RCTL>;
-        };
-
-       /*
-        *
-        *
-        */
+       
         mm_ctrl_bspc: ctrl_bspc {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -174,9 +31,6 @@
 
     };
 
-    macros {
-        };
-    };
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------- 
               ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
@@ -197,7 +51,7 @@
                   &mt TAB Q    &kp W       &kp E         &kp R         &mt ESC T               &kp Y     &kp U     &kp I     &kp O      &kp P
                   &kp A        &kp S       &kp D         &kp F         &kp G                   &kp H     &kp J     &kp K     &kp L      &kp SEMI
     &kp LSHFT     &mt LCTRL Z  &kp X       &kp C         &kp V         &kp B                   &kp N     &kp M     &kp DOT   &kp COMMA  &kp FSLH  &kp RET
-                                        &kp LALT  &mo 1  &kp SPACE                            &mm_ctrl_bspc  &lt 2 BSPC    &mt RCTRL DEL
+                                        &kp LALT  &mo 1  &kp SPACE                             &kp BSPC  &mo 2    &mt RCTRL DEL
             >;
         };
 /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
