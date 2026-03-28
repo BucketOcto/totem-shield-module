@@ -1,0 +1,65 @@
+#include <physical_layouts.dtsi>
+
+/ {
+    totem_physical_layout: totem_physical_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Default";
+
+        //                           w    h     x     y   rot   rx    ry
+        keys
+            /* ROW0_L: top row */
+            = <&key_physical_attrs  100  100     0     0       0    0    0>  /* SWL1  COL0 */
+            , <&key_physical_attrs  100  100   100     0       0    0    0>  /* SWL2  COL1 */
+            , <&key_physical_attrs  100  100   200     0       0    0    0>  /* SWL3  COL2 */
+            , <&key_physical_attrs  100  100   300     0       0    0    0>  /* SWL4  COL3 */
+            , <&key_physical_attrs  100  100   400     0       0    0    0>  /* SWL5  COL4 */
+
+            /* ROW1_L: home row */
+            , <&key_physical_attrs  100  100     0   100       0    0    0>  /* SWL6  COL0 */
+            , <&key_physical_attrs  100  100   100   100       0    0    0>  /* SWL7  COL1 */
+            , <&key_physical_attrs  100  100   200   100       0    0    0>  /* SWL8  COL2 */
+            , <&key_physical_attrs  100  100   300   100       0    0    0>  /* SWL9  COL3 */
+            , <&key_physical_attrs  100  100   400   100       0    0    0>  /* SWL10 COL4 */
+
+            /* ROW2_L: COL0=raised pinky, COL1-COL4=bottom row */
+            , <&key_physical_attrs  100  100     0    50       0    0    0>  /* SWL11 COL0 pinky */
+            , <&key_physical_attrs  100  100   100   200       0    0    0>  /* SWL12 COL1 */
+            , <&key_physical_attrs  100  100   200   200       0    0    0>  /* SWL13 COL2 */
+            , <&key_physical_attrs  100  100   300   200       0    0    0>  /* SWL14 COL3 */
+            , <&key_physical_attrs  100  100   400   200       0    0    0>  /* SWL15 COL4 */
+
+            /* ROW3_L: COL0=below pinky, COL1-COL3=thumbs */
+            , <&key_physical_attrs  100  100     0   150       0    0    0>  /* SWL16 COL0 below pinky */
+            , <&key_physical_attrs  100  100   150   325       0    0    0>  /* SWL17 COL1 thumb */
+            , <&key_physical_attrs  100  100   250   350       0    0    0>  /* SWL18 COL2 thumb */
+            , <&key_physical_attrs  100  100   350   325       0    0    0>  /* SWL19 COL3 thumb */
+
+            /* ROW0_R: top row right */
+            , <&key_physical_attrs  100  100   700     0       0    0    0>  /* SWR5  COL4 */
+            , <&key_physical_attrs  100  100   800     0       0    0    0>  /* SWR4  COL3 */
+            , <&key_physical_attrs  100  100   900     0       0    0    0>  /* SWR3  COL2 */
+            , <&key_physical_attrs  100  100  1000     0       0    0    0>  /* SWR2  COL1 */
+            , <&key_physical_attrs  100  100  1100     0       0    0    0>  /* SWR1  COL0 */
+
+            /* ROW1_R: home row right */
+            , <&key_physical_attrs  100  100   700   100       0    0    0>  /* SWR10 COL4 */
+            , <&key_physical_attrs  100  100   800   100       0    0    0>  /* SWR9  COL3 */
+            , <&key_physical_attrs  100  100   900   100       0    0    0>  /* SWR8  COL2 */
+            , <&key_physical_attrs  100  100  1000   100       0    0    0>  /* SWR7  COL1 */
+            , <&key_physical_attrs  100  100  1100   100       0    0    0>  /* SWR6  COL0 */
+
+            /* ROW2_R: COL0=raised pinky, COL1-COL4=bottom row */
+            , <&key_physical_attrs  100  100   700   200       0    0    0>  /* SWR15 COL4 */
+            , <&key_physical_attrs  100  100   800   200       0    0    0>  /* SWR14 COL3 */
+            , <&key_physical_attrs  100  100   900   200       0    0    0>  /* SWR13 COL2 */
+            , <&key_physical_attrs  100  100  1000   200       0    0    0>  /* SWR12 COL1 */
+            , <&key_physical_attrs  100  100  1100    50       0    0    0>  /* SWR11 COL0 pinky */
+
+            /* ROW3_R: COL0=below pinky, COL1-COL3=thumbs */
+            , <&key_physical_attrs  100  100  1100   150       0    0    0>  /* SWR16 COL0 below pinky */
+            , <&key_physical_attrs  100  100   850   325       0    0    0>  /* SWR17 COL3 thumb */
+            , <&key_physical_attrs  100  100   950   350       0    0    0>  /* SWR18 COL2 thumb */
+            , <&key_physical_attrs  100  100  1050   325       0    0    0>  /* SWR19 COL1 thumb */
+            ;
+    };
+};

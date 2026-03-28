@@ -1,0 +1,12 @@
+#include "totem-layouts.dtsi"
+
+&totem_physical_layout {
+    transform = <&default_transform>;
+    kscan = <&kscan0>;
+};
+
+/ {
+    chosen {
+        zmk,physical-layout = &totem_physical_layout;
+    };
+};
